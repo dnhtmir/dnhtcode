@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "name": "Launch file",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/cmd/repeater/repeater.go",
+            "args": ["${workspaceFolder}/test-artifacts/request.txt"]
+        }
+    ]
+}
