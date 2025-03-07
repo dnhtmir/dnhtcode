@@ -1,8 +1,5 @@
-module repeater
+module intruder
 
 go 1.24.0
 
-require (
-	golang.org/x/net v0.37.0 // indirect
-	golang.org/x/text v0.23.0 // indirect
-)
+require github.com/andybalholm/brotli v1.1.1

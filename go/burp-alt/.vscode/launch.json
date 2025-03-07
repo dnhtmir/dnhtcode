@@ -5,8 +5,12 @@
             "type": "go",
             "request": "launch",
             "mode": "debug",
-            "program": "${workspaceFolder}/cmd/repeater/repeater.go",
-            "args": ["${workspaceFolder}/test-artifacts/request.txt"]
+            "program": "${workspaceFolder}/cmd/intruder/intruder.go",
+            "args": [
+                "-rf", "${workspaceFolder}/test-artifacts/request.txt", 
+                "-v", "1-5",
+                "-wrk", "2"
+            ]
         }
     ]
 }
