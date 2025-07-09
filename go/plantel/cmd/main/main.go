@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"plantel/internal/player"
+	"plantel/internal/stats"
 )
 
 func main() {
@@ -16,4 +17,7 @@ func main() {
 	for _, p := range ps {
 		fmt.Println(p)
 	}
+
+	numbering := stats.PlayerNumbering(ps)
+	fmt.Println(numbering)
 }

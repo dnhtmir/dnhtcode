@@ -5,9 +5,20 @@
             "type": "go",
             "request": "launch",
             "mode": "debug",
-            "program": "${workspaceFolder}\\cmd\\main.go",
+            "program": "${workspaceFolder}/cmd/main/main.go",
             "args": [
-                "${workspaceFolder}\\players.json",
+                "${workspaceFolder}/players.json",
+            ]
+        },
+        {
+            "name": "Launch adjust json",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/cmd/adjust_json/adjust_json.go",
+            "args": [
+                "${workspaceFolder}/players.csv",
+                "${workspaceFolder}/players.json",
             ]
         }
     ]

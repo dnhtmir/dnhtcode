@@ -1,0 +1,37 @@
+{
+    "Players": [
+        {
+            "joined": "2020-07-01",
+            "position": "Guarda Redes",
+            "number": 99,
+            "name": "Diogo Costa",
+            "birthdate": "1999-09-19",
+            "situation": "No plantel",
+            "country": "Portugal",
+            "pass_percentage": 100,
+            "contract_ends": 2027
+        },
+        {
+            "joined": "2024-10-01",
+            "position": "Médio Ofensivo",
+            "number": 86,
+            "name": "Rodrigo Mora",
+            "birthdate": "2007-05-05",
+            "situation": "No plantel",
+            "country": "Portugal",
+            "pass_percentage": 100,
+            "contract_ends": 2030
+        },
+        {
+            "joined": "2022-08-09",
+            "position": "Médio Ofensivo",
+            "number": 20,
+            "name": "André Franco",
+            "birthdate": "1998-04-12",
+            "situation": "Vai sair",
+            "country": "Portugal",
+            "pass_percentage": 90,
+            "contract_ends": 2027
+        }
+    ]
+}

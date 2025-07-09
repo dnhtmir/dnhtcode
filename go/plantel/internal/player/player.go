@@ -23,17 +23,27 @@ var (
 	}
 )
 
+type National struct {
+	IsRepresenting bool   `json:"is_representing"`
+	Team           string `json:"team"`
+}
+
 // RawPlayer holds unmarshaled JSON as-is
 type RawPlayer struct {
-	Joined         string `json:"joined"`
-	Position       string `json:"position"`
-	Number         int    `json:"number"`
-	Name           string `json:"name"`
-	Birthdate      string `json:"birthdate"`
-	Situation      string `json:"situation"`
-	Country        string `json:"country"`
-	PassPercentage int    `json:"pass_percentage"`
-	ContractEnds   int    `json:"contract_ends"`
+	Position       string   `json:"position"`
+	Number         int      `json:"number"`
+	Name           string   `json:"name"`
+	Birthdate      string   `json:"birthdate"`
+	Situation      string   `json:"situation"`
+	Country        string   `json:"country"`
+	PassPercentage int      `json:"pass_percentage"`
+	ContractEnds   int      `json:"contract_ends"`
+	FromAcademy    bool     `json:"academy"`
+	Injured        bool     `json:"injured"`
+	NT             National `json:"national"`
+	Suspended      bool     `json:"suspended"`
+	NextSeason     string   `json:"next_season"`
+	Joined         string   `json:"joined"`
 }
 
 // Player is the validated and enriched model
@@ -57,9 +67,7 @@ func LoadPlayers(fp string) ([]Player, error) {
 	}
 	defer file.Close()
 
-	var raw struct {
-		Players []RawPlayer `json:"Players"`
-	}
+	raw := make([]RawPlayer, 0)
 
 	decoder := json.NewDecoder(file)
 	if err := decoder.Decode(&raw); err != nil {
@@ -69,7 +77,7 @@ func LoadPlayers(fp string) ([]Player, error) {
 	var validated []Player
 	now := time.Now()
 
-	for _, rp := range raw.Players {
+	for _, rp := range raw {
 		// Validate position
 		if positions.FromString(strings.TrimSpace(rp.Position)) == positions.Invalid {
 			return nil, fmt.Errorf("invalid position: %s", rp.Position)
@@ -81,7 +89,7 @@ func LoadPlayers(fp string) ([]Player, error) {
 		}
 
 		// Validate number
-		if rp.Number < 1 || rp.Number > 99 {
+		if rp.Number < 0 || rp.Number > 99 {
 			return nil, fmt.Errorf("invalid number: %d", rp.Number)
 		}
 
@@ -96,13 +104,13 @@ func LoadPlayers(fp string) ([]Player, error) {
 		}
 
 		// Parse birthdate
-		birthDate, err := parseDate(rp.Birthdate, "birthdate", now)
+		birthDate, err := parseDate(rp.Birthdate, "birthdate", "02/01/2006", now)
 		if err != nil {
 			return nil, err
 		}
 
 		// Parse joined date
-		joined, err := parseDate(rp.Joined, "joined date", now)
+		joined, err := parseDate(rp.Joined, "joined date", "2006-01-02", now)
 		if err != nil {
 			return nil, err
 		}
@@ -144,12 +152,12 @@ func LoadPlayers(fp string) ([]Player, error) {
 	return validated, nil
 }
 
-func parseDate(dateStr, label string, now time.Time) (time.Time, error) {
+func parseDate(dateStr, label, format string, now time.Time) (time.Time, error) {
 	if dateStr == "" {
 		return time.Time{}, nil
 	}
 
-	parsed, err := time.Parse("2006-01-02", dateStr)
+	parsed, err := time.Parse(format, dateStr)
 	if err != nil {
 		return time.Time{}, fmt.Errorf("invalid %s format: %s", label, dateStr)
 	}
