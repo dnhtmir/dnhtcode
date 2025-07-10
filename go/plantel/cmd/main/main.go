@@ -20,4 +20,12 @@ func main() {
 
 	numbering := stats.PlayerNumbering(ps)
 	fmt.Println(numbering)
+
+	ft := stats.NewFrequencyTable(ps, true)
+	ft.PrintTable()
+
+	ft2 := stats.NewFrequencyTable(ps, false)
+	ft2.PrintTable()
+
+	stats.CreateAgeMetrics(ps)
 }

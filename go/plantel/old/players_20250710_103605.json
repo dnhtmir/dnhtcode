@@ -210,7 +210,7 @@
     },
     {
         "position": "Defesa Central",
-        "number": 21,
+        "number": 0,
         "name": "Dominik Prpić",
         "birthdate": "19/05/2004",
         "situation": "Comprado",
@@ -225,7 +225,7 @@
         },
         "suspended": false,
         "next_season": "",
-        "joined": "2025-07-10"
+        "joined": ""
     },
     {
         "position": "Médio Defensivo",

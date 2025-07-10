@@ -58,6 +58,8 @@ type Player struct {
 	Country        string
 	PassPercentage uint8
 	ContractEnds   uint16
+
+	NextSeason string
 }
 
 func LoadPlayers(fp string) ([]Player, error) {
@@ -136,6 +138,8 @@ func LoadPlayers(fp string) ([]Player, error) {
 			Country:        rp.Country,
 			PassPercentage: uint8(rp.PassPercentage),
 			ContractEnds:   uint16(rp.ContractEnds),
+
+			NextSeason: rp.NextSeason,
 		})
 	}
 
